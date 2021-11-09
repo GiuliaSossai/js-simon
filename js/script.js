@@ -38,7 +38,20 @@ const clock = setInterval(function() {
 
   if (tempoSecondi === 0){
     clearInterval(clock);
-    let userNumbers = prompt('scrivi i numeri che ricordi');
+    let userNumbers = '88, 20, 30'; //prompt('scrivi i numeri che ricordi!');
+    console.log('numeri scritti da utente:', userNumbers);
+
+    /**
+     * 1. ordine non è importante
+     * 2. devo confrontare userNumbers e  myNumbers per vedere se e quanti numeri sono presenti in entrambi
+     * stampo i numeri indovinati e quanti sono
+     */
+
+    //converto l'array myNumbers in una stringa
+    let strMyNumbers = myNumbers.toString();
+    console.log(strMyNumbers);
+
+    //confronto i valori delle due stringhe
   }
   
 }, 1000);
