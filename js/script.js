@@ -38,20 +38,47 @@ const clock = setInterval(function() {
 
   if (tempoSecondi === 0){
     clearInterval(clock);
-    let userNumbers = '88, 20, 30'; //prompt('scrivi i numeri che ricordi!');
+    let userNumbers = '80, 30, 40, 3, 45, 56, 97' //prompt('scrivi i numeri che ricordi!');
     console.log('numeri scritti da utente:', userNumbers);
 
     /**
      * 1. ordine non è importante
-     * 2. devo confrontare userNumbers e  myNumbers per vedere se e quanti numeri sono presenti in entrambi
+     * 2. devo fconfrontare userNumbers con myNumbers per vedere se e quanti numeri sono presenti in entrambi
      * stampo i numeri indovinati e quanti sono
      */
 
-    //converto l'array myNumbers in una stringa
-    let strMyNumbers = myNumbers.toString();
-    console.log(strMyNumbers);
+    //converto stringa userNumbers in array
+    let arrUser = JSON.parse("[" + userNumbers + "]");
+    console.log('array da stringa', arrUser);
+    console.log('elemento', arrUser[0]);
 
-    //confronto i valori delle due stringhe
+    let counter = 0; 
+    //confronto i due array usando ciclo
+    /*se myNumbers include elementi di arrUser:
+     1. aumento il counter
+     2. stampo in pagina
+     se nessun elemento è presente, counter = 0 e stampo msg 
+    */
+    
+    const boxText = document.querySelector('.text');
+
+    for (let i = 0; i < arrUser.length; i++){
+      if (myNumbers.includes(arrUser[i])){
+        console.log('indice', arrUser[i]);
+        counter++;
+        console.log('contatore', counter);
+        console.log('hai indovinato x numeri: numeri');
+        boxText.innerHTML = `
+        <p>hai indovinato ${counter} numeri! ${arrUser[i]}</p>
+        `;
+      } else {
+        console.log('hai indovinato 0 numeri');
+        boxText.innerHTML = `
+        <p>hai indovinato ${counter} numeri! ritenta</p>
+        `;
+      }
+    }
+    
   }
   
 }, 1000);
