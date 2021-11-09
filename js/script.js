@@ -2,31 +2,46 @@
  * Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi.
 Dopo 30 secondi l’utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt().
 Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
+
+* 1. prendo un array vuoto
+* 2. faccio ciclo per riempire l'array con 5 numeri random
+* 3. pusho i 5 numeri nell'array che era vuoto
+*
  */
 
-let myNumbers = [getRandomInt(1, 100), getRandomInt(1, 100), getRandomInt(1, 100), getRandomInt(1, 100), getRandomInt(1, 100)];
-console.log('array 5 numeri', myNumbers);
+let myNumbers = [];
+//[getRandomInt(1, 100), getRandomInt(1, 100), getRandomInt(1, 100), getRandomInt(1, 100), getRandomInt(1, 100)];
+console.log('array da riempire', myNumbers);
 
-document.querySelector('.box').innerHTML = myNumbers;
-
-
-
-
-
-
-
-//estraggo numero random dalla funzione relativa per cinque volte
-//con un ciclo pusho 5 numeri dentro l'array finche la sua lunghezza è uguale a 5
-/*function fillArray(){
+for (let i = 0; i < 5; i++){
+  console.log ('i', i);
   let number = getRandomInt(1, 100);
-  console.log(number);
   myNumbers.push(number);
-  
-  console.log('array 5 numeri', myNumbers);
-}*/
-  
+  console.log('array - ciclo', myNumbers);
+}
+console.log('array riempito con 5 numeri', myNumbers);
+
+/**
+ * 1. quando stampo l'array, devo far partire il countdown
+ * 2. finito il countdown deve esserci un prompt che chiede all'utente di inserire i numeri visti 
+ */
+
+//inizializzo countdown
+let tempoSecondi = 5;
 
 
+const clock = setInterval(function() {
+  //stampo l'array di 5 numeri random
+  document.querySelector('.box').innerHTML = myNumbers;
+  tempoSecondi--;
+  console.log(tempoSecondi);
+
+  if (tempoSecondi === 0){
+    clearInterval(clock);
+    let userNumbers = prompt('scrivi i numeri che ricordi');
+  }
+  
+}, 1000);
 
 
 function getRandomInt(min, max){
