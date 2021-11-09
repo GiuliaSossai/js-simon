@@ -8,3 +8,15 @@
 body {
   background-color: #e2c0c0;
 }
+
+.container {
+  height: 100vh;
+}
+
+.box {
+  min-width: 100px;
+  font-size: 40px;
+  color: #000;
+  background-color: rgb(245, 206, 31);
+  border: 5px solid #686565;
+}
