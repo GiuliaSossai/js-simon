@@ -41,7 +41,7 @@ const clock = setInterval(function() {
 
   if (tempoSecondi === 0){
     clearInterval(clock);
-    let userNumbers = '80, 30, 40, 3, 45, 56, 97' //prompt('scrivi i numeri che ricordi!');
+    let userNumbers = prompt('scrivi i numeri che ricordi!');
     console.log('numeri scritti da utente:', userNumbers);
 
     /**
@@ -53,7 +53,7 @@ const clock = setInterval(function() {
     //converto stringa userNumbers in array
     let arrUser = JSON.parse("[" + userNumbers + "]");
     console.log('array da stringa', arrUser);
-    console.log('elemento', arrUser[0]);
+    //console.log('elemento', arrUser[0]);
 
     let counter = 0; 
     //confronto i due array usando ciclo
@@ -64,26 +64,32 @@ const clock = setInterval(function() {
     */
     
     const boxText = document.querySelector('.text');
+    let numeriIndovinati = [];
+
+    // myNumbers -> [1, 3, 5, 7, 9]
+    // arrUser -> [1, 3, 5, 7, 10]
 
     for (let i = 0; i < arrUser.length; i++){
-      //se indovino tot numeri: numeri indovinati
+      //se myNumbers include un elemento di arrUser, aumento il contatore
       if (myNumbers.includes(arrUser[i])){
         console.log('indice', arrUser[i]);
         counter++;
         console.log('contatore', counter);
-        console.log('hai indovinato x numeri');
-        boxText.innerHTML = `
-        <p>hai indovinato ${counter} numeri! ${arrUser[i]}</p>
-        `;
-      } else {
-        //se indovino 0 numeri
-        console.log('hai indovinato x numeri: ritenta');
-        boxText.innerHTML = `
-        <p>hai indovinato ${counter} numeri! ritenta</p>
-        `;
+        numeriIndovinati.push(arrUser[i]);  
       }
     }
-    
+   console.log('numeri indovinati', numeriIndovinati);
+
+    if(counter == 0){
+      boxText.innerHTML = `
+      <p>hai indovinato ${counter} numeri! ritenta</p>
+      `;
+    } else {
+      boxText.innerHTML = `
+        <p>hai indovinato ${counter} numeri! ${numeriIndovinati}</p>
+        `;
+    }
+     
   }
   
 }, 1000);
