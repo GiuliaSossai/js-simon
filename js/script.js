@@ -16,7 +16,10 @@ console.log('array da riempire', myNumbers);
 for (let i = 0; i < 5; i++){
   console.log ('i', i);
   let number = getRandomInt(1, 100);
-  myNumbers.push(number);
+  //controllo unicità numero da pushare nell'array
+  if(!myNumbers.includes(number)){
+    myNumbers.push(number);
+  }
   console.log('array - ciclo', myNumbers);
 }
 console.log('array riempito con 5 numeri', myNumbers);
@@ -63,16 +66,18 @@ const clock = setInterval(function() {
     const boxText = document.querySelector('.text');
 
     for (let i = 0; i < arrUser.length; i++){
+      //se indovino tot numeri: numeri indovinati
       if (myNumbers.includes(arrUser[i])){
         console.log('indice', arrUser[i]);
         counter++;
         console.log('contatore', counter);
-        console.log('hai indovinato x numeri: numeri');
+        console.log('hai indovinato x numeri');
         boxText.innerHTML = `
         <p>hai indovinato ${counter} numeri! ${arrUser[i]}</p>
         `;
       } else {
-        console.log('hai indovinato 0 numeri');
+        //se indovino 0 numeri
+        console.log('hai indovinato x numeri: ritenta');
         boxText.innerHTML = `
         <p>hai indovinato ${counter} numeri! ritenta</p>
         `;
