@@ -64,6 +64,7 @@ console.log('array riempito con 5 numeri', myNumbers);
 //passati 5 secondi faccio interrompere il countdown
 setTimeout(function() {
   boxText.innerHTML = `ti ricordi tutti i numeri?`;
+  document.querySelector('.box').innerHTML = '';
   clearInterval(countdown);
   console.log('dentro stop countdown 2');
 }, tempoSecondi * 1000);
@@ -71,9 +72,11 @@ setTimeout(function() {
 //passati 6 secondi chiedo all'utente di scrivere i numeri
 setTimeout(function() {
     console.log('dentro funzione per prompt 3');
+    
+
     boxText.innerHTML = `scrivi i numeri che ti ricordi`;
     
-    //let userNumbers = prompt('scrivi i numeri che ricordi!');
+    let userNumbers = prompt('scrivi i numeri che ricordi!');
     console.log('numeri scritti da utente:', userNumbers);
 
     /**
@@ -114,12 +117,13 @@ setTimeout(function() {
       <p>hai indovinato ${counter} numeri! ritenta</p>
       `;
     } else {
+      document.querySelector('.box').innerHTML = myNumbers;
       boxText.innerHTML = `
         <p>hai indovinato ${counter} numeri! ${numeriIndovinati}</p>
         `;
     }
   
-}(tempoSecondi + 1) * 1000)
+},(tempoSecondi + 2) * 1000);
 
 
 
