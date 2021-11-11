@@ -26,13 +26,9 @@ let tempoSecondi = 5;
   logica e funzioni
 *****************/
 
-/* TIMING FUNCTIONS
-
- * 1. quando stampo l'array, devo far partire il countdown
- * 2. finito il countdown deve esserci un prompt che chiede all'utente di inserire i numeri visti 
- */
 //arrow function per countdown
 const countdown = setInterval(function() {
+  console.log('dentro set interval 1');
   //stampo l'array di 5 numeri random
   document.querySelector('.box').innerHTML = myNumbers;
   boxText.innerHTML = `memorizza questi numeri, hai ${tempoSecondi} secondi`;
@@ -41,17 +37,43 @@ const countdown = setInterval(function() {
 }, 1000);
 
 
+
+//ciclo per formare arrray di 5 numeri random
+for (let i = 0; i < 5; i++){
+  console.log ('i', i);
+  let number = getRandomInt(1, 100);
+  //controllo unicità numero da pushare nell'array
+  if(!myNumbers.includes(number)){
+    myNumbers.push(number);
+  }
+  console.log('array - ciclo', myNumbers);
+}
+console.log('array riempito con 5 numeri', myNumbers);
+
+
+/* TIMING FUNCTIONS
+
+ * 1. quando stampo l'array, devo far partire il countdown
+ * 2. finito il countdown deve esserci un prompt che chiede all'utente di inserire i numeri visti 
+ */
+
+
+
+
+
+//passati 5 secondi faccio interrompere il countdown
 setTimeout(function() {
   boxText.innerHTML = `ti ricordi tutti i numeri?`;
   clearInterval(countdown);
+  console.log('dentro stop countdown 2');
 }, tempoSecondi * 1000);
 
-
+//passati 6 secondi chiedo all'utente di scrivere i numeri
 setTimeout(function() {
-  if(tempoSecondi === 0){
+    console.log('dentro funzione per prompt 3');
     boxText.innerHTML = `scrivi i numeri che ti ricordi`;
-    //clearInterval(clock);
-    let userNumbers = prompt('scrivi i numeri che ricordi!');
+    
+    //let userNumbers = prompt('scrivi i numeri che ricordi!');
     console.log('numeri scritti da utente:', userNumbers);
 
     /**
@@ -96,20 +118,13 @@ setTimeout(function() {
         <p>hai indovinato ${counter} numeri! ${numeriIndovinati}</p>
         `;
     }
-  }
+  
 }(tempoSecondi + 1) * 1000)
 
-//ciclo per formare arrray di 5 numeri random
-for (let i = 0; i < 5; i++){
-  console.log ('i', i);
-  let number = getRandomInt(1, 100);
-  //controllo unicità numero da pushare nell'array
-  if(!myNumbers.includes(number)){
-    myNumbers.push(number);
-  }
-  console.log('array - ciclo', myNumbers);
-}
-console.log('array riempito con 5 numeri', myNumbers);
+
+
+
+
 
 function getRandomInt(min, max){
   return Math.floor(Math.random() * (max - min) + min);
