@@ -38,7 +38,7 @@ const countdown = setInterval(function() {
 
 
 
-//ciclo per formare arrray di 5 numeri random
+//ciclo per formare array di 5 numeri random
 for (let i = 0; i < 5; i++){
   console.log ('i', i);
   let number = getRandomInt(1, 100);
@@ -52,14 +52,9 @@ console.log('array riempito con 5 numeri', myNumbers);
 
 
 /* TIMING FUNCTIONS
-
  * 1. quando stampo l'array, devo far partire il countdown
  * 2. finito il countdown deve esserci un prompt che chiede all'utente di inserire i numeri visti 
  */
-
-
-
-
 
 //passati 5 secondi faccio interrompere il countdown
 setTimeout(function() {
@@ -69,11 +64,9 @@ setTimeout(function() {
   console.log('dentro stop countdown 2');
 }, tempoSecondi * 1000);
 
-//passati 6 secondi chiedo all'utente di scrivere i numeri
+//passati 6 secondi (per sicurezza) chiedo all'utente di scrivere i numeri che ricorda
 setTimeout(function() {
     console.log('dentro funzione per prompt 3');
-    
-
     boxText.innerHTML = `scrivi i numeri che ti ricordi`;
     
     let userNumbers = prompt('scrivi i numeri che ricordi!');
@@ -88,7 +81,6 @@ setTimeout(function() {
     //converto stringa userNumbers in array
     let arrUser = JSON.parse("[" + userNumbers + "]");
     console.log('array da stringa', arrUser);
-    //console.log('elemento', arrUser[0]);
 
     let counter = 0; 
     //confronto i due array usando ciclo
@@ -96,9 +88,6 @@ setTimeout(function() {
      1. aumento il counter
      2. stampo messaggio diverso a seconda del counter
     */
-    
-    // const boxText = document.querySelector('.text');
-    // let numeriIndovinati = [];
 
     for (let i = 0; i < arrUser.length; i++){
       //se myNumbers include un elemento di arrUser, aumento il contatore
@@ -123,13 +112,10 @@ setTimeout(function() {
         `;
     }
   
-},(tempoSecondi + 2) * 1000);
+},(tempoSecondi + 1) * 1000);
 
 
-
-
-
-
+//funzione per numeri random
 function getRandomInt(min, max){
   return Math.floor(Math.random() * (max - min) + min);
 }
